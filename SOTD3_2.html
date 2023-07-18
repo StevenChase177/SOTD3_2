@@ -6,8 +6,8 @@
     <body>
         <h1> Let's Make a Deal</h1>
         <p> choose a door</p>
-        <form>
-            <select>
+        <form onsubmit="formSubmit(event)"> 
+            <select id="DoorSelection">
                 <option value="Door1">Door 1 </option>
                 <option value="Door2">Door 2</option>
                 <option value="Door3">Door 3</option>
@@ -16,7 +16,26 @@
         </form>
         <p id="userMessage"> Good luck!</p>
         <script> 
+            function formSubmit(event){
+                // prevents the form from making a post request
+                event.preventDefault()
+                // the user can either win a goat or a car. 
+                const goodPrize = "car"
+                const badPrize ="goat"
 
+                // holds the users choice from the select menu
+                let usersChoice = document.getElementById("DoorSelection").value
+
+                // the goat is behind door one. if the user picks something else they get a car.
+                if(usersChoice == "Door1"){
+                    
+                    document.getElementById("userMessage").innerText = `you got a ${badPrize}` 
+                  
+                }else{
+                    document.getElementById("userMessage").innerText = `you got a ${goodPrize}`
+                }
+
+            }
         </script>
     </body>
 </html>
